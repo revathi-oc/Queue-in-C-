@@ -2,67 +2,66 @@
 //23070123105
 #include <iostream>
 using namespace std;
-#define size 5
+#define SIZE 5
 #define ERROR -9999
-class Queue{
-    int rear, front, ar[size];
-    public:
-    Queue(){
+class Queue {
+    int rear, front, ar[SIZE];
+public:
+    Queue() {
         rear = -1;
         front = -1;
-        ar[0]=0;
     }
     void enqueue(int);
     int dequeue();
     void disp();
 };
-void Queue :: enqueue(int num){
-    if (rear == (size+1)){
-        cout<<"Queue is full"<<endl;
-    }
-    else{
-        if(front == -1){
-            ar[++front]=num;
-            rear++;
-        }
-        else{
-            ar[++rear]=num;
-        }
-    }
 
-    }
-int Queue ::dequeue(){
-    if(front ==-1 || front ==(rear+1)){
-        cout<<"Queue is empty"<<endl;
-        return ERROR;
-    }
-    else{
-        int val = ar[front++];
-        return val;
-    }
-}
-void Queue :: disp(){
-    if(front ==-1 || front ==(rear+1)){
-        cout<<"Quee=ue is empty"<<endl;
+void Queue::enqueue(int num) {
+    if (rear == SIZE - 1) {
+        cout << "Queue is full" << endl;
         return;
     }
-    else{
-        int i = front ;
-        while (i!=(rear+1)){
-            cout<<ar[i];
-            i++;
-        }
+    if (front == -1) {
+        front = 0;
     }
+    ar[++rear] = num;
+    cout << "Enqueued: " << num << endl;
 }
 
-int main(){
-        Queue q1;
-        q1.enqueue(4);
-        q1.enqueue(8);
-        q1.enqueue(3);
-        q1.disp();
-        int val = q1.dequeue();
-        cout<<endl<<"Deleted element: "<<val<<endl;
-        q1.disp();
+int Queue::dequeue() {
+    if (front == -1 || front > rear) {
+        cout << "Queue is empty" << endl;
+        return ERROR;
+    }
+    int val = ar[front++];
+    if (front > rear) {
+        front = -1;
+        rear = -1;
+    }
+    return val;
+}
 
+void Queue::disp() {
+    if (front == -1) {
+        cout << "Queue is empty" << endl;
+        return;
+    }
+    cout << "Queue contents: ";
+    for (int i = front; i <= rear; i++) {
+        cout << ar[i] << " ";
+    }
+    cout << endl;
+}
+int main() {
+    Queue q1;
+    q1.enqueue(4);
+    q1.enqueue(8);
+    q1.enqueue(3);
+    q1.disp();
+    int val = q1.dequeue();
+    cout << "Deleted element: " << val << endl;
+
+    q1.disp();
+
+    return 0;
 }
