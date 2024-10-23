@@ -10,5 +10,5 @@ In C++, a queue is a linear data structure that operates on the **First In, Firs
 ![image](https://github.com/user-attachments/assets/b6f1bd2e-fc60-403e-bec0-65e99042a8e8)
 
 ## Conclusion
-We learnt about enqueue and dequeue and hoiw to implement it in C++.
+We learnt about enqueue and dequeue and how to implement it in C++.
 
